@@ -3,14 +3,14 @@ using PaymentGateway.Domain.Common;
 
 namespace PaymentGateway.Domain.ValueObjects
 {
-    public sealed class Currency
+    public class Currency
     {
         private static readonly HashSet<string> SupportedCurrencies = new()
-    {
-        "USD", // US Dollar
-        "GBP", // British Pound
-        "EUR"  // Euro
-    };
+        {
+            "USD",
+            "GBP",
+            "EUR"
+        };
 
         public string Code { get; }
 

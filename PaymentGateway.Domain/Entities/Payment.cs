@@ -3,7 +3,7 @@ using PaymentGateway.Domain.ValueObjects;
 
 namespace PaymentGateway.Domain.Entities
 {
-    public sealed class Payment
+    public class Payment
     {
         public PaymentId Id { get; private set; }
         public CardNumber CardNumber { get; private set; }
@@ -13,8 +13,6 @@ namespace PaymentGateway.Domain.Entities
         public string? AuthorizationCode { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
-        // EF Core constructor
-        private Payment() { }
 
         private Payment(
             PaymentId id,

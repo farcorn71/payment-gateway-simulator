@@ -3,7 +3,7 @@ using PaymentGateway.Domain.Common;
 
 namespace PaymentGateway.Domain.ValueObjects
 {
-    public sealed class CardNumber
+    public class CardNumber
     {
         public string Value { get; }
         public string LastFourDigits { get; }
@@ -32,7 +32,6 @@ namespace PaymentGateway.Domain.ValueObjects
                 return Result<CardNumber>.Failure(
                     Error.Validation("card_number.invalid_length", "Card number must be between 14 and 19 digits"));
 
-            // Luhn algorithm validation for card numbers
             if (!IsValidLuhn(cleanedValue))
                 return Result<CardNumber>.Failure(
                     Error.Validation("card_number.invalid_checksum", "Card number is invalid"));

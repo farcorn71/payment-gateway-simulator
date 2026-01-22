@@ -11,7 +11,7 @@ using Xunit;
 
 namespace PaymentGateway.Api.Tests.Integration
 {
-    public sealed class ProcessPaymentTests : IClassFixture<WebApplicationFactory<Program>>
+    public class ProcessPaymentTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly HttpClient _client;
 
@@ -23,7 +23,7 @@ namespace PaymentGateway.Api.Tests.Integration
         [Fact]
         public async Task ProcessPayment_WithValidRequest_ShouldReturnAuthorized()
         {
-            // Arrange - Card ending in odd number = authorized
+            // Arrange 
             var request = new
             {
                 cardNumber = "4532015112830366", // Ends in 6, but Luhn valid
