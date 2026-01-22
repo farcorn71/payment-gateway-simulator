@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PaymentGateway.Application\PaymentGateway.Application.csproj" />
+    <ProjectReference Include="..\..\src\PaymentGateway.Application\PaymentGateway.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
