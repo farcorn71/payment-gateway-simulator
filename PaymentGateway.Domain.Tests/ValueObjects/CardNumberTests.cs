@@ -6,12 +6,12 @@ using Xunit;
 
 namespace PaymentGateway.Domain.Tests.ValueObjects
 {
-    public sealed class CardNumberTests
+    public class CardNumberTests
     {
         [Theory]
-        [InlineData("4532015112830366")] // Valid Visa
-        [InlineData("5425233430109903")] // Valid Mastercard
-        [InlineData("378282246310005")]  // Valid Amex
+        [InlineData("4532015112830366")]
+        [InlineData("5425233430109903")]
+        [InlineData("378282246310005")]
         public void Create_WithValidCardNumber_ShouldSucceed(string cardNumber)
         {
             // Act
@@ -52,9 +52,9 @@ namespace PaymentGateway.Domain.Tests.ValueObjects
         }
 
         [Theory]
-        [InlineData("123")]           // Too short
-        [InlineData("1234567890123")] // Too short (13 digits)
-        [InlineData("12345678901234567890")] // Too long (20 digits)
+        [InlineData("123")]
+        [InlineData("1234567890123")] 
+        [InlineData("12345678901234567890")]
         public void Create_WithInvalidLength_ShouldFail(string cardNumber)
         {
             // Act
@@ -82,14 +82,14 @@ namespace PaymentGateway.Domain.Tests.ValueObjects
             }
             else
             {
-                // Spaces and dashes should be removed
+                
                 result.IsSuccess.Should().BeTrue();
             }
         }
 
         [Theory]
-        [InlineData("1234567890123456")] // Invalid Luhn
-        [InlineData("4532015112830367")] // Invalid Luhn (last digit wrong)
+        [InlineData("1234567890123456")] 
+        [InlineData("4532015112830367")] 
         public void Create_WithInvalidLuhnChecksum_ShouldFail(string cardNumber)
         {
             // Act
