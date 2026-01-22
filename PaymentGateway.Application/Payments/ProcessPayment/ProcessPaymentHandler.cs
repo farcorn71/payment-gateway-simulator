@@ -32,7 +32,7 @@ namespace PaymentGateway.Application.Payments.ProcessPayment
             var paymentId = PaymentId.New();
 
             _logger.LogInformation("Processing payment {PaymentId}", paymentId);
-
+            
             var cardNumberResult = CardNumber.Create(request.CardNumber);
             if (!cardNumberResult.IsSuccess)
             {
