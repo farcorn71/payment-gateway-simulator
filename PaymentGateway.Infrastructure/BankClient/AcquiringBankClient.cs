@@ -13,7 +13,7 @@ using Polly.Retry;
 
 namespace PaymentGateway.Infrastructure.BankClient
 {
-    public sealed class AcquiringBankClient : IAcquiringBankClient
+    public class AcquiringBankClient : IAcquiringBankClient
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<AcquiringBankClient> _logger;
@@ -27,7 +27,6 @@ namespace PaymentGateway.Infrastructure.BankClient
             _httpClient = httpClient;
             _logger = logger;
 
-            // Configure Polly retry policy for 503 Service Unavailable
             _retryPolicy = Policy
                 .HandleResult<HttpResponseMessage>(r =>
                     r.StatusCode == HttpStatusCode.ServiceUnavailable)
@@ -125,7 +124,7 @@ namespace PaymentGateway.Infrastructure.BankClient
             }
         }
 
-        private sealed record BankResponse(
+        private record BankResponse(
             bool Authorized,
             string? AuthorizationCode);
     }

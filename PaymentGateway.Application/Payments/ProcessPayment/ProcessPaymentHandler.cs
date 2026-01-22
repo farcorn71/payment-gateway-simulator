@@ -9,7 +9,7 @@ using PaymentGateway.Domain.ValueObjects;
 
 namespace PaymentGateway.Application.Payments.ProcessPayment
 {
-    public sealed class ProcessPaymentHandler : IRequestHandler<ProcessPaymentCommand, Result<ProcessPaymentResponse>>
+    public class ProcessPaymentHandler : IRequestHandler<ProcessPaymentCommand, Result<ProcessPaymentResponse>>
     {
         private readonly IAcquiringBankClient _bankClient;
         private readonly IPaymentRepository _paymentRepository;
@@ -33,9 +33,6 @@ namespace PaymentGateway.Application.Payments.ProcessPayment
 
             _logger.LogInformation("Processing payment {PaymentId}", paymentId);
 
-            // Validate and create value objects
-            // NOTE: Per requirements, validation failures should return HTTP 400 (Rejected)
-            // without calling the bank, but still provide a response in the same format
             var cardNumberResult = CardNumber.Create(request.CardNumber);
             if (!cardNumberResult.IsSuccess)
             {
@@ -71,7 +68,7 @@ namespace PaymentGateway.Application.Payments.ProcessPayment
                 return Result<ProcessPaymentResponse>.Failure(cvvResult.Error!);
             }
 
-            // All validations passed, send to acquiring bank
+            
             var bankRequest = new BankPaymentRequest(
                 cardNumberResult.Value!.Value,
                 expiryDateResult.Value!.ToFormattedString(),
@@ -90,7 +87,7 @@ namespace PaymentGateway.Application.Payments.ProcessPayment
                 return Result<ProcessPaymentResponse>.Failure(bankResponse.Error!);
             }
 
-            // Create payment entity based on bank response
+            
             var payment = bankResponse.Value!.Authorized
                 ? Payment.CreateAuthorized(
                     paymentId,
@@ -104,13 +101,13 @@ namespace PaymentGateway.Application.Payments.ProcessPayment
                     expiryDateResult.Value!,
                     moneyResult.Value!);
 
-            // Store payment
+           
             await _paymentRepository.AddAsync(payment, cancellationToken);
 
             _logger.LogInformation("Payment {PaymentId} processed successfully with status {Status}",
                 paymentId, payment.Status);
 
-            // Map to response
+            
             var response = new ProcessPaymentResponse(
                 paymentId.ToString(),
                 payment.Status.ToString(),

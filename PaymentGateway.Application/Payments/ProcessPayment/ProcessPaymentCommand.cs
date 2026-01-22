@@ -4,7 +4,7 @@ using PaymentGateway.Domain.Common;
 
 namespace PaymentGateway.Application.Payments.ProcessPayment
 {
-    public sealed record ProcessPaymentCommand(
+    public record ProcessPaymentCommand(
     string CardNumber,
     int ExpiryMonth,
     int ExpiryYear,
@@ -12,7 +12,7 @@ namespace PaymentGateway.Application.Payments.ProcessPayment
     int Amount,
     string Cvv) : IRequest<Result<ProcessPaymentResponse>>;
 
-    public sealed record ProcessPaymentResponse(
+    public record ProcessPaymentResponse(
         string Id,
         string Status,
         string LastFourCardDigits,

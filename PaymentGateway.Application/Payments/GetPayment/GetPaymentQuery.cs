@@ -4,9 +4,9 @@ using PaymentGateway.Domain.Common;
 
 namespace PaymentGateway.Application.Payments.GetPayment
 {
-    public sealed record GetPaymentQuery(string PaymentId) : IRequest<Result<GetPaymentResponse>>;
+    public record GetPaymentQuery(string PaymentId) : IRequest<Result<GetPaymentResponse>>;
 
-    public sealed record GetPaymentResponse(
+    public record GetPaymentResponse(
         string Id,
         string Status,
         string LastFourCardDigits,

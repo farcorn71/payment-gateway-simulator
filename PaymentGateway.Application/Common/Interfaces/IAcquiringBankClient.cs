@@ -9,14 +9,14 @@ namespace PaymentGateway.Application.Common.Interfaces
             CancellationToken cancellationToken = default);
     }
 
-    public sealed record BankPaymentRequest(
+    public record BankPaymentRequest(
         string CardNumber,
         string ExpiryDate,
         string Currency,
         int Amount,
         string Cvv);
 
-    public sealed record BankAuthorizationResponse(
+    public record BankAuthorizationResponse(
         bool Authorized,
         string? AuthorizationCode);
 }

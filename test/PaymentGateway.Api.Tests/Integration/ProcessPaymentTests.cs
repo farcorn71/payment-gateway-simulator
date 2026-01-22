@@ -26,7 +26,7 @@ namespace PaymentGateway.Api.Tests.Integration
             // Arrange 
             var request = new
             {
-                cardNumber = "4532015112830366", // Ends in 6, but Luhn valid
+                cardNumber = "4532015112830366",
                 expiryMonth = 12,
                 expiryYear = DateTime.UtcNow.Year + 1,
                 currency = "USD",
@@ -34,12 +34,10 @@ namespace PaymentGateway.Api.Tests.Integration
                 cvv = "123"
             };
 
-            // Note: This card ends in 6 (even) so will be declined by simulator
-            // Let's use a card ending in odd for authorized
-
+            
             var authorizedRequest = new
             {
-                cardNumber = "4532015112830367", // This won't pass Luhn, let me use valid one
+                cardNumber = "4532015112830367",
                 expiryMonth = 12,
                 expiryYear = DateTime.UtcNow.Year + 1,
                 currency = "USD",
@@ -94,7 +92,7 @@ namespace PaymentGateway.Api.Tests.Integration
             {
                 cardNumber = "4532015112830366",
                 expiryMonth = 1,
-                expiryYear = DateTime.UtcNow.Year - 1, // Past year
+                expiryYear = DateTime.UtcNow.Year - 1,
                 currency = "USD",
                 amount = 1000,
                 cvv = "123"
@@ -116,7 +114,7 @@ namespace PaymentGateway.Api.Tests.Integration
                 cardNumber = "4532015112830366",
                 expiryMonth = 12,
                 expiryYear = DateTime.UtcNow.Year + 1,
-                currency = "XXX", // Invalid currency
+                currency = "XXX",
                 amount = 1000,
                 cvv = "123"
             };
@@ -138,7 +136,7 @@ namespace PaymentGateway.Api.Tests.Integration
                 expiryMonth = 12,
                 expiryYear = DateTime.UtcNow.Year + 1,
                 currency = "USD",
-                amount = 0, // Invalid amount
+                amount = 0,
                 cvv = "123"
             };
 

@@ -4,7 +4,7 @@ using PaymentGateway.Domain.Common;
 
 namespace PaymentGateway.Domain.ValueObjects
 {
-    public sealed class ExpiryDate
+    public class ExpiryDate
     {
         public int Month { get; }
         public int Year { get; }
@@ -33,7 +33,6 @@ namespace PaymentGateway.Domain.ValueObjects
                 return Result<ExpiryDate>.Failure(
                     Error.Validation("expiry_date.expired", "Card has expired"));
 
-            // Ensure year is reasonable (within next 20 years)
             if (year > currentYear + 20)
                 return Result<ExpiryDate>.Failure(
                     Error.Validation("expiry_year.invalid", "Expiry year is too far in the future"));

@@ -3,7 +3,7 @@ using PaymentGateway.Domain.Common;
 
 namespace PaymentGateway.Domain.ValueObjects
 {
-    public sealed class Cvv
+    public class Cvv
     {
         public string Value { get; }
 
@@ -31,7 +31,6 @@ namespace PaymentGateway.Domain.ValueObjects
             return Result<Cvv>.Success(new Cvv(trimmedValue));
         }
 
-        // Never expose actual CVV value in logs or responses
         public override string ToString() => "***";
     }
 }

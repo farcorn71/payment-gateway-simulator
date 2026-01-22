@@ -6,7 +6,7 @@ using PaymentGateway.Domain.ValueObjects;
 
 namespace PaymentGateway.Infrastructure.Repositories
 {
-    public sealed class InMemoryPaymentRepository : IPaymentRepository
+    public class InMemoryPaymentRepository : IPaymentRepository
     {
         private readonly ConcurrentDictionary<Guid, Payment> _payments = new();
 
@@ -26,7 +26,6 @@ namespace PaymentGateway.Infrastructure.Repositories
             return Task.CompletedTask;
         }
 
-        // For testing purposes
         public int Count => _payments.Count;
         public void Clear() => _payments.Clear();
     }

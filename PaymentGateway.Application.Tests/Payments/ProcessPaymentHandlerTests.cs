@@ -14,7 +14,7 @@ using Xunit;
 
 namespace PaymentGateway.Application.Tests.Payments
 {
-    public sealed class ProcessPaymentHandlerTests
+    public class ProcessPaymentHandlerTests
     {
         private readonly IAcquiringBankClient _bankClient;
         private readonly IPaymentRepository _paymentRepository;

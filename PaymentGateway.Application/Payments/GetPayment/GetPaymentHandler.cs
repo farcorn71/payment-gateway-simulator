@@ -8,7 +8,7 @@ using PaymentGateway.Domain.ValueObjects;
 
 namespace PaymentGateway.Application.Payments.GetPayment
 {
-    public sealed class GetPaymentHandler : IRequestHandler<GetPaymentQuery, Result<GetPaymentResponse>>
+    public class GetPaymentHandler : IRequestHandler<GetPaymentQuery, Result<GetPaymentResponse>>
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly ILogger<GetPaymentHandler> _logger;
