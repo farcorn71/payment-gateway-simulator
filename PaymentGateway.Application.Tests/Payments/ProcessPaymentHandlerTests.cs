@@ -107,7 +107,7 @@ namespace PaymentGateway.Application.Tests.Payments
         {
             // Arrange
             var command = new ProcessPaymentCommand(
-                CardNumber: "123", // Too short
+                CardNumber: "123",
                 ExpiryMonth: 12,
                 ExpiryYear: DateTime.UtcNow.Year + 1,
                 Currency: "USD",
@@ -139,7 +139,7 @@ namespace PaymentGateway.Application.Tests.Payments
             var command = new ProcessPaymentCommand(
                 CardNumber: "2222405343248877",
                 ExpiryMonth: 1,
-                ExpiryYear: 2020, // Past year
+                ExpiryYear: 2020,
                 Currency: "USD",
                 Amount: 1000,
                 Cvv: "123");
@@ -166,7 +166,7 @@ namespace PaymentGateway.Application.Tests.Payments
                 CardNumber: "2222405343248877",
                 ExpiryMonth: 12,
                 ExpiryYear: DateTime.UtcNow.Year + 1,
-                Currency: "XXX", // Invalid currency
+                Currency: "XXX",
                 Amount: 1000,
                 Cvv: "123");
 
@@ -189,7 +189,7 @@ namespace PaymentGateway.Application.Tests.Payments
                 ExpiryMonth: 12,
                 ExpiryYear: DateTime.UtcNow.Year + 1,
                 Currency: "USD",
-                Amount: 0, // Invalid amount
+                Amount: 0, 
                 Cvv: "123");
 
             // Act
@@ -244,7 +244,7 @@ namespace PaymentGateway.Application.Tests.Payments
                 ExpiryYear: DateTime.UtcNow.Year + 1,
                 Currency: "USD",
                 Amount: 1000,
-                Cvv: "12"); // Too short
+                Cvv: "12");
 
             // Act
             var result = await _handler.Handle(command, CancellationToken.None);
