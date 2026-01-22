@@ -62,7 +62,6 @@ namespace PaymentGateway.Domain.Tests.ValueObjects
             var currentYear = now.Year;
             var pastMonth = Math.Max(1, now.Month - 1);
 
-            // Skip test if we're in January (no past month in current year)
             if (now.Month == 1)
                 return;
 

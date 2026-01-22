@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace PaymentGateway.Api.Middleware
 {
-    public sealed class GlobalExceptionHandlingMiddleware
+    public class GlobalExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<GlobalExceptionHandlingMiddleware> _logger;

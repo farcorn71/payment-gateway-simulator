@@ -103,7 +103,7 @@ namespace PaymentGateway.Api.Endpoints
         }
     }
 
-    public sealed record ProcessPaymentRequest(
+    public record ProcessPaymentRequest(
         string CardNumber,
         int ExpiryMonth,
         int ExpiryYear,

@@ -1,6 +1,6 @@
 ﻿namespace PaymentGateway.Api.Filters
 {
-    public sealed class ValidationFilter<T> : IEndpointFilter where T : class
+    public class ValidationFilter<T> : IEndpointFilter where T : class
     {
         public async ValueTask<object?> InvokeAsync(
             EndpointFilterInvocationContext context,

@@ -69,7 +69,7 @@ namespace PaymentGateway.Api.Tests.Integration
             // Arrange
             var request = new
             {
-                cardNumber = "123", // Too short
+                cardNumber = "123",
                 expiryMonth = 12,
                 expiryYear = DateTime.UtcNow.Year + 1,
                 currency = "USD",
