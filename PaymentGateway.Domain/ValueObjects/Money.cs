@@ -4,9 +4,9 @@ using PaymentGateway.Domain.Common;
 
 namespace PaymentGateway.Domain.ValueObjects
 {
-    public sealed class Money
+    public class Money
     {
-        public int Amount { get; } // Amount in minor units (cents, pence, etc.)
+        public int Amount { get; }
         public Currency Currency { get; }
 
         private Money(int amount, Currency currency)
@@ -21,7 +21,7 @@ namespace PaymentGateway.Domain.ValueObjects
                 return Result<Money>.Failure(
                     Error.Validation("amount.invalid", "Amount must be greater than zero"));
 
-            if (amount > 999999999) // Max ~$10M to prevent overflow
+            if (amount > 9999999)
                 return Result<Money>.Failure(
                     Error.Validation("amount.too_large", "Amount exceeds maximum allowed value"));
 
